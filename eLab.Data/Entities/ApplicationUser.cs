@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 
-namespace eLab.Models
+namespace eLab.Data
 {
     public class ApplicationUser : IdentityUser
     {

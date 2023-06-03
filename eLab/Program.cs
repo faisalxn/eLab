@@ -1,5 +1,4 @@
 using eLab.Data;
-using eLab.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 

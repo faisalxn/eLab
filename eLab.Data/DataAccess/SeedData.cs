@@ -1,5 +1,5 @@
-﻿using eLab.Models;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace eLab.Data
 {
@@ -52,13 +52,13 @@ namespace eLab.Data
             user.PasswordHash = passwordHasher.HashPassword(user, "User@123");
 
 
-            if(userManager.FindByNameAsync(admin.UserName).Result == null)
+            if (userManager.FindByNameAsync(admin.UserName).Result == null)
             {
                 await userManager.CreateAsync(admin);
                 await userManager.AddToRoleAsync(admin, UserRole.Admin);
             }
-            
-            if(userManager.FindByNameAsync(user.UserName).Result == null)
+
+            if (userManager.FindByNameAsync(user.UserName).Result == null)
             {
                 await userManager.CreateAsync(user);
                 await userManager.AddToRoleAsync(user, UserRole.User);
