@@ -1,5 +1,6 @@
 ﻿using eLab.Data;
 using eLab.Models;
+using eLab.Repository.UnitOfWork;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
@@ -9,19 +10,19 @@ namespace eLab.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private readonly ApplicationDbContext _context;
         private readonly UserManager<ApplicationUser> _userManager;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public HomeController(ILogger<HomeController> logger, ApplicationDbContext context, UserManager<ApplicationUser> userManager)
+        public HomeController(ILogger<HomeController> logger, IUnitOfWork unitOfWork, UserManager<ApplicationUser> userManager)
         {
             _logger = logger;
-            _context = context;
+            _unitOfWork = unitOfWork;
             _userManager = userManager;
         }
 
         public IActionResult Index()
         {
-            var res = _context.Tests.ToList();
+            var res = _unitOfWork.TestRepository.GetAll().ToList();
             return View(res);
         }
 
