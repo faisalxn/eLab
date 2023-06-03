@@ -32,6 +32,7 @@ namespace eLab.Data
                 NormalizedUserName = "ADMIN",
                 Email = "admin@medifox.com",
                 NormalizedEmail = "ADMIN@MEDIFOX.COM",
+                EmailConfirmed = true,
                 CreatedDate = DateTime.Now,
                 IsActive = true,
                 IsDeleted = false
@@ -45,6 +46,7 @@ namespace eLab.Data
                 NormalizedUserName = "PRABHAT",
                 Email = "prabhat@medifox.com",
                 NormalizedEmail = "PRABHAT@MEDIFOX.COM",
+                EmailConfirmed = true,
                 CreatedDate = DateTime.Now,
                 IsActive = true,
                 IsDeleted = false
