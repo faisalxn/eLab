@@ -5,7 +5,7 @@ namespace eLab.Data
 {
     public class SeedData
     {
-        public static async Task RoleCreation(RoleManager<IdentityRole> roleManager)
+        private static async Task RoleCreation(RoleManager<IdentityRole> roleManager)
         {
             if (!await roleManager.RoleExistsAsync(UserRole.Admin))
             {
@@ -18,10 +18,9 @@ namespace eLab.Data
                 var userRole = new IdentityRole() { Name = UserRole.User, NormalizedName = UserRole.User.ToUpper() };
                 await roleManager.CreateAsync(userRole);
             }
-
         }
 
-        public static async Task UserCreation(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
+        private static async Task UserCreation(UserManager<ApplicationUser> userManager)
         {
             var admin = new ApplicationUser()
             {
@@ -62,12 +61,11 @@ namespace eLab.Data
 
         public static async Task DatabaseSeedingAsync(IServiceProvider services)
         {
-            var context = services.GetRequiredService<ApplicationDbContext>();
             var userManager = services.GetRequiredService<UserManager<ApplicationUser>>();
             var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
 
             await RoleCreation(roleManager);
-            await UserCreation(context, userManager);
+            await UserCreation(userManager);
         }
     }
 }
