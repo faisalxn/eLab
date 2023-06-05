@@ -23,13 +23,10 @@ namespace eLab.Data
 
         public static async Task UserCreation(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
         {
-            PasswordHasher<ApplicationUser> passwordHasher = new PasswordHasher<ApplicationUser>();
-
-
             var admin = new ApplicationUser()
             {
-                UserName = "admin",
-                NormalizedUserName = "ADMIN",
+                UserName = "admin@medifox.com",
+                NormalizedUserName = "ADMIN@MEDIFOX.COM",
                 Email = "admin@medifox.com",
                 NormalizedEmail = "ADMIN@MEDIFOX.COM",
                 EmailConfirmed = true,
@@ -37,13 +34,11 @@ namespace eLab.Data
                 IsActive = true,
                 IsDeleted = false
             };
-            admin.PasswordHash = passwordHasher.HashPassword(admin, "Admin@123");
-
 
             var user = new ApplicationUser()
             {
-                UserName = "prabhat",
-                NormalizedUserName = "PRABHAT",
+                UserName = "prabhat@medifox.com",
+                NormalizedUserName = "PRABHAT@MEDIFOX.COM",
                 Email = "prabhat@medifox.com",
                 NormalizedEmail = "PRABHAT@MEDIFOX.COM",
                 EmailConfirmed = true,
@@ -51,18 +46,16 @@ namespace eLab.Data
                 IsActive = true,
                 IsDeleted = false
             };
-            user.PasswordHash = passwordHasher.HashPassword(user, "User@123");
-
 
             if (userManager.FindByNameAsync(admin.UserName).Result == null)
             {
-                await userManager.CreateAsync(admin);
+                await userManager.CreateAsync(admin, "Admin@123");
                 await userManager.AddToRoleAsync(admin, UserRole.Admin);
             }
 
             if (userManager.FindByNameAsync(user.UserName).Result == null)
             {
-                await userManager.CreateAsync(user);
+                await userManager.CreateAsync(user, "User@123");
                 await userManager.AddToRoleAsync(user, UserRole.User);
             }
         }
