@@ -123,6 +123,9 @@ namespace eLab.Controllers
 
                 var test = _unitOfWork.LabTestRepository.GetById(id);
 
+                if (test.Id != labTest.Id) return View(labTest);
+
+
                 test.IsDeleted = true;
 
                 test.UpdatedAt = DateTime.Now;
