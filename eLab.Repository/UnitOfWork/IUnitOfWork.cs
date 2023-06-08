@@ -4,7 +4,7 @@ namespace eLab.Repository.UnitOfWork
 {
     public interface IUnitOfWork : IDisposable
     {
-        ITestRepository TestRepository { get; }
+        ILabTestRepository LabTestRepository { get; }
 
         int Save();
     }

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Test>
+﻿@model IEnumerable<LabTest>
 @using eLab.Data
 
 @{
@@ -12,9 +12,9 @@
     <div>
         @foreach(var obj in Model)
         {
-            <span>@obj.id</span> <br />
-            <span>@obj.testName</span> <br />
-            <span>@obj.price</span> <br />
+            <span>@obj.Id</span> <br />
+            <span>@obj.Name</span> <br />
+            <span>@obj.Price</span> <br />
         }
     </div>
 </div>

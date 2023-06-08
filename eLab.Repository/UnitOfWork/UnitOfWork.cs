@@ -7,7 +7,7 @@ namespace eLab.Repository.UnitOfWork
     public class UnitOfWork : IUnitOfWork, IDisposable
     {
         private ApplicationDbContext _context;
-        private TestRepository _testRepository;
+        private LabTestRepository _labTestRepository;
 
 
         public UnitOfWork(ApplicationDbContext context)
@@ -15,11 +15,11 @@ namespace eLab.Repository.UnitOfWork
             _context = context;
         }
 
-        public ITestRepository TestRepository
+        public ILabTestRepository LabTestRepository
         {
             get
             {
-                return _testRepository ?? (_testRepository = new TestRepository(_context));
+                return _labTestRepository ?? (_labTestRepository = new LabTestRepository(_context));
             }
         }
 

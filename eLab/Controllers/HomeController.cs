@@ -22,7 +22,7 @@ namespace eLab.Controllers
 
         public IActionResult Index()
         {
-            var res = _unitOfWork.TestRepository.GetAll().ToList();
+            var res = _unitOfWork.LabTestRepository.GetAll().ToList();
             return View(res);
         }
 
