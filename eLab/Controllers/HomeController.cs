@@ -22,8 +22,7 @@ namespace eLab.Controllers
 
         public IActionResult Index()
         {
-            var res = _unitOfWork.LabTestRepository.GetAll().ToList();
-            return View(res);
+            return View();
         }
 
         public IActionResult Privacy()
