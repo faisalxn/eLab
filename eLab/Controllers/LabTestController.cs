@@ -1,11 +1,13 @@
 ﻿using eLab.Data;
 using eLab.Repository.UnitOfWork;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace eLab.Controllers
 {
+    [Authorize]
     public class LabTestController : Controller
     {
         private readonly ILogger<LabTestController> _logger;
