@@ -16,7 +16,12 @@ namespace eLab.Repository.Repositories
 
             Expression<Func<LabTest, bool>> filterParameter = m => m.IsDeleted == false;
 
-            return GetAll(orderBy: orderByParameters).ToList();
+            List<Expression<Func<LabTest, object>>> includeParameters = new List<Expression<Func<LabTest, object>>>
+            {
+                m => m.CreatedByUser
+            };
+
+            return GetAll(orderBy: orderByParameters, filter: filterParameter, includeProperties: includeParameters).ToList();
         }
 
         public LabTest GetTestById(int id)

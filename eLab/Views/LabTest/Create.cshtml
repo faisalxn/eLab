@@ -1,0 +1,73 @@
+﻿@model LabTest
+@using eLab.Data
+
+@{
+    ViewData["Title"] = "Lab Test Create";
+}
+
+<div class="card">
+    <div class="card-header">
+        <h2>Create Lab Test</h2>
+    </div>
+    <div class="card-body">
+        <div class="text-center">
+
+            <form asp-action="Create" method="post">
+        
+                <div class="form-group row">
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                        <label asp-for="Name"></label>
+                    </div>
+                    <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+                        <input asp-for="Name" class="form-control" />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                        <label asp-for="Price"></label>
+                    </div>
+                    <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+                        <input asp-for="Price" class="form-control" />
+                        <span asp-validation-for="Price" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                        <label asp-for="Category"></label>
+                    </div>
+                    <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+                        <input asp-for="Category" class="form-control" />
+                        <span asp-validation-for="Category" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                        <label asp-for="Description"></label>
+                    </div>
+                    <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+                        <textarea asp-for="Description" class="form-control"></textarea>
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                        <label asp-for="Preparation"></label>
+                    </div>
+                    <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+                        <textarea asp-for="Preparation" class="form-control"></textarea>
+                        <span asp-validation-for="Preparation" class="text-danger"></span>
+                    </div>
+                </div>
+
+
+                <button type="submit" class="btn btn-primary">Save</button>
+            </form>
+        </div>
+
+    </div>
+</div>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,5 +16,8 @@ namespace eLab.Data.Entities
 
         public bool IsActive { get; set; }
         public bool IsDeleted { get; set; }
+
+        [ForeignKey(nameof(CreatedBy))]
+        public ApplicationUser CreatedByUser { get; set; }
     }
 }
