@@ -29,7 +29,8 @@ namespace eLab.Controllers
         // GET: LabTestsController/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            var labTest = _unitOfWork.LabTestRepository.GetById(id);
+            return View(labTest);
         }
 
         // GET: LabTestsController/Create

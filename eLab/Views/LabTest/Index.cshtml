@@ -54,10 +54,13 @@
                             </span>
                         </td>
                         <td>
+                            <a class="text-secondary mr-2" asp-action="Details" asp-route-id="@labTest.Id">
+                                <i class="fa fa-eye"></i>
+                            </a>
                             <a class="text-primary mr-2" asp-action="Edit" asp-route-id="@labTest.Id">
                                 <i class="fa fa-edit"></i>
                             </a>
-                            <a class="text-danger" asp-action="Edit">
+                            <a class="text-danger" asp-action="Delete" asp-route-id="@labTest.Id">
                                 <i class="fa fa-times"></i>
                             </a>
                         </td>
