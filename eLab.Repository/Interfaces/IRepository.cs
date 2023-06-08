@@ -16,15 +16,15 @@ namespace eLab.Repository.Interfaces
             int? page = null,
             int? pageSize = null);
 
-        Task<TEntity> GetById(object id);
+        TEntity GetById(object id);
 
-        Task Add(TEntity entity);
-        Task AddRange(IList<TEntity> entities);
+        void Add(TEntity entity);
+        void AddRange(IList<TEntity> entities);
 
         void Update(TEntity entity);
         void UpdateRange(IList<TEntity> entities);
 
-        Task Delete(object id);
+        void Delete(object id);
         void DeleteRange(IList<TEntity> entities);
     }
 }

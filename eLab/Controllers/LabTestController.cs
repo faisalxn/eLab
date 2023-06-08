@@ -41,7 +41,7 @@ namespace eLab.Controllers
         // POST: LabTestsController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create(LabTest labTest)
+        public async Task<ActionResult> CreateAsync(LabTest labTest)
         {
             try
             {
@@ -53,7 +53,7 @@ namespace eLab.Controllers
                 labTest.IsActive = true;
                 labTest.IsDeleted = false;
 
-                await _unitOfWork.LabTestRepository.Add(labTest);
+                _unitOfWork.LabTestRepository.Add(labTest);
                 _unitOfWork.Save();
 
                 return RedirectToAction(nameof(Index));
@@ -65,9 +65,9 @@ namespace eLab.Controllers
         }
 
         // GET: LabTestsController/Edit/5
-        public async Task<ActionResult> EditAsync(int id)
+        public ActionResult EditAsync(int id)
         {
-            var labTest = await _unitOfWork.LabTestRepository.GetById(id);
+            var labTest = _unitOfWork.LabTestRepository.GetById(id);
             return View(labTest);
         }
 
@@ -81,7 +81,7 @@ namespace eLab.Controllers
                 var userName = HttpContext.User.Identity.Name;
                 var user = await _userManager.FindByNameAsync(userName);
 
-                var test = await _unitOfWork.LabTestRepository.GetById(id);
+                var test = _unitOfWork.LabTestRepository.GetById(id);
 
                 test.Name = labTest.Name;
                 test.Price = labTest.Price;
@@ -106,16 +106,29 @@ namespace eLab.Controllers
         // GET: LabTestsController/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            var labTest = _unitOfWork.LabTestRepository.GetById(id);
+            return View(labTest);
         }
 
         // POST: LabTestsController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public async Task<ActionResult> DeleteAsync(int id, LabTest labTest)
         {
             try
             {
+                var userName = HttpContext.User.Identity.Name;
+                var user = await _userManager.FindByNameAsync(userName);
+
+                var test = _unitOfWork.LabTestRepository.GetById(id);
+
+                test.IsDeleted = true;
+
+                test.UpdatedAt = DateTime.Now;
+                test.UpdatedBy = user.Id;
+
+                _unitOfWork.Save();
+
                 return RedirectToAction(nameof(Index));
             }
             catch

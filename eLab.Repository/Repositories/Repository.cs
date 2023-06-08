@@ -21,19 +21,19 @@ namespace eLab.Repository.Repositories
             dbSet = _context.Set<TEntity>();
         }
 
-        public async Task Add(TEntity entity)
+        public void Add(TEntity entity)
         {
-            await dbSet.AddAsync(entity);
+            dbSet.AddAsync(entity);
         }
 
-        public async Task AddRange(IList<TEntity> entities)
+        public void AddRange(IList<TEntity> entities)
         {
-            await dbSet.AddRangeAsync(entities);
+            dbSet.AddRange(entities);
         }
 
-        public async Task Delete(object id)
+        public void Delete(object id)
         {
-            var entity = await GetById(id);
+            var entity = GetById(id);
             dbSet.Remove(entity);
         }
 
@@ -68,9 +68,9 @@ namespace eLab.Repository.Repositories
             return query.AsQueryable();
         }
 
-        public async Task<TEntity> GetById(object id)
+        public TEntity GetById(object id)
         {
-            return await dbSet.FindAsync(id);
+            return dbSet.Find(id);
         }
 
         public void Update(TEntity entity)
