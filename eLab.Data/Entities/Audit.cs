@@ -19,5 +19,8 @@ namespace eLab.Data.Entities
 
         [ForeignKey(nameof(CreatedBy))]
         public ApplicationUser CreatedByUser { get; set; }
+
+        [ForeignKey(nameof(UpdatedBy))]
+        public ApplicationUser UpdatedByUser { get; set; }
     }
 }

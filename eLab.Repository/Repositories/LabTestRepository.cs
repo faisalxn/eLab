@@ -18,7 +18,7 @@ namespace eLab.Repository.Repositories
 
             List<Expression<Func<LabTest, object>>> includeParameters = new List<Expression<Func<LabTest, object>>>
             {
-                m => m.CreatedByUser
+                m => m.CreatedByUser, m => m.UpdatedByUser
             };
 
             return GetAll(orderBy: orderByParameters, filter: filterParameter, includeProperties: includeParameters).ToList();

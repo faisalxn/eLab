@@ -65,18 +65,36 @@ namespace eLab.Controllers
         }
 
         // GET: LabTestsController/Edit/5
-        public ActionResult Edit(int id)
+        public async Task<ActionResult> EditAsync(int id)
         {
-            return View();
+            var labTest = await _unitOfWork.LabTestRepository.GetById(id);
+            return View(labTest);
         }
 
         // POST: LabTestsController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public async Task<ActionResult> EditAsync(int id, LabTest labTest)
         {
             try
             {
+                var userName = HttpContext.User.Identity.Name;
+                var user = await _userManager.FindByNameAsync(userName);
+
+                var test = await _unitOfWork.LabTestRepository.GetById(id);
+
+                test.Name = labTest.Name;
+                test.Price = labTest.Price;
+                test.Category = labTest.Category;
+                test.Description = labTest.Description;
+                test.Preparation = labTest.Preparation;
+                test.IsActive = labTest.IsActive;
+
+                test.UpdatedAt = DateTime.Now;
+                test.UpdatedBy = user.Id;
+
+                _unitOfWork.Save();
+
                 return RedirectToAction(nameof(Index));
             }
             catch
